@@ -1,0 +1,305 @@
+/*
+Name: Grouo 13
+File Name: webd3201.css
+Date:September 29, 2016
+Course Code: webd 3201
+Purpose: to style tags, classes etc within 
+the HTML pages that have been linked to it.
+*/
+
+*
+{
+	letter-spacing: .5px;
+	word-spacing: 1px;
+}
+
+
+body{
+	background-color: #38cbd5;
+	color: #000066;
+	font-family: Cambria, Helvetica, sans-serif;
+	overflow-y: scroll;
+}
+
+p {
+	
+	padding-bottom: 0.3cm;
+	font-size: 12pt; 
+	font-family: Georgia, Helvetica, sans-serif;
+}
+
+h2,h3{
+	color: #00802b;
+}
+
+th.content, td.content {
+border: 1px solid black;
+}	
+
+div.Navigation ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-top: 1px solid #555;
+	border-right: 1px solid #555;
+}
+
+div.Navigation li a
+{
+	font-size: 105%;
+	background-color: #cc99ff;
+	padding-bottom: 0.3cm;
+	text-decoration: none;
+	display: block;
+	padding: 8px 0 8px 2px;
+	border-left: 1px solid #555;
+	border-bottom: 1px solid #555;
+	font-family: "Courier New", Serif, Sans-serif;
+}
+div.Navigation a:link{
+	color: #006600;
+}
+
+div.Navigation a:visited{
+	color: #002699;
+}
+div.Navigation a:hover{
+	font-size: 105%;
+	background-color: #ff80ff;
+}
+div.Navigation a:active{
+	color: #ff8000;
+	background-color: #e5f2ff;
+}
+
+table {
+	border: 1px solid black;
+	background-color: #e5f2ff;
+	width: 90%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+	
+td.Course{
+	background-color: #ffb3ff;
+	text-align: left;
+}
+
+
+td.color {
+	background-color:#b3d9ff;
+}
+
+td.color.header {
+	vertical-align: middle;
+	text-align: center;
+	font-size: 200%;
+	font-family: "Courier New", Serif, Sans-serif;
+}
+
+td.color.navigation {
+	vertical-align: top;
+	text-align: left;
+}
+td.color.footer {
+	text-align: right;
+	vertical-align: middle;
+}
+
+caption{
+	font-style: italic;
+}
+
+/*--------------------------Links---------------------------------------------------------------------------------------------*/
+/* unvisited link */
+a:link {
+	color: black;
+}
+
+/* visited link */
+a:visited {
+	color: green;
+}
+
+/* mouse over link */
+a:hover {
+	color: hotpink;
+	background-color: #ccf3ff;
+}
+
+/* selected link */
+a:active {
+	color: blue;
+	text-transform: uppercase;
+}
+
+#logo{
+	vertical-align: middle;
+	background-color:#ffff00;
+	width: 20%;
+	text-align: center;
+}
+.center{
+	text-align: center;
+}
+
+.left{
+	text-align: left;
+}
+
+/* TEST SELCTORS */
+.tt1 {
+	font-size: 20pt;
+	font-weight: bold;
+	font-family: "Comic Sans MS", Verdana;
+}
+
+em {
+	font-size: 40pt;
+	font-style: normal;
+	font-family: Arial;
+	text-decoration: underline;
+}
+/* PHP Thingz */
+#container
+{
+margin: 0 auto;
+width: 1200px;
+background: #e5f2ff;
+}
+
+#header
+{
+background: #ffc426;
+padding: 20px;
+}
+
+#header h1
+{ 
+	display: inline;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 450%;
+	font-family: "Courier New", Serif, Sans-serif;
+}
+#header img
+{ 
+		vertical-align: middle;
+		width: 200px;
+		height: 150px;
+}
+
+#sites
+{
+	float: left;
+	width: 1200px;
+	background: #333;
+}
+
+#sites ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#sites ul li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+#sites li a
+{
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-right: 1px solid #fff;
+	text-align: center;
+
+}
+
+#sites li a:hover { 
+			background-color: #ccc; 
+			color: #000;
+}
+
+#navigation
+{
+	clear: left;
+	float: left;
+	width: 240px;
+	padding: 10px 0;
+	margin: 0 20px 0 0;
+	display: inline;
+}
+
+#navigation h3 { margin: 0; }
+
+#content-container
+{ /*e6ebeb / beeff2 */
+	float: left;
+	width: 1200px;
+	background-color: #e6ebeb;
+	background-image: url(../images/styles/background.png);
+	/* go up a directory, and then work down into images/styles directory */
+	background-repeat: repeat-y;
+
+}
+.imagesize1{
+	width: 300px;
+	height: 300px;
+	
+}
+
+
+#content
+{
+	float: right;
+	width: 860px;
+	padding: 20px 0;
+	margin: 0 0 0 30px;
+	display: inline;
+}
+
+#content h2 { margin: 0; }
+
+
+#footer
+{
+	clear: both;
+	background: #ffc426;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}
+#footer img{
+	vertical-align: middle;
+}
+
+.imagesize {
+	width: 300px;
+	height: 200px;
+}
+
+.display1table{
+	width: 50%; 
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+.display1text {
+	text-align: left;
+	vertical-align: top;
+}
+
+a.homelist {
+	color: black;
+
+}

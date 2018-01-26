@@ -1,0 +1,1 @@
+UPDATE users SET password = '36341cbb9c5a51ba81e855523de49dfd' WHERE user_id = 'aladila';
