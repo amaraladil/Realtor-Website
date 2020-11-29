@@ -7,10 +7,10 @@ September 29, 2016
 */
 
 	//Dataconnect CONSTANTS
-	define("HOST_DB", "127.0.0.1");
-	define("NAME_DB", "group13_db");
-	define("USER_DB", "group13_admin");
-	define("PASSWORD_DB", "skype");
+	define("HOST_DB", "ec2-54-146-4-66.compute-1.amazonaws.com");
+	define("NAME_DB", "d9o1vsbabb9mrc");
+	define("USER_DB", "vqobjqondskxxb");
+	define("PASSWORD_DB", "616393702c01e04e7dba834eae8828433fd50569371fd999c5e3aba05f4846ca");
 
 	//For registeration 
 	define("MINIMUM_ID_LENGTH", 5);
