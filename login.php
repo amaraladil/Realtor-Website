@@ -9,7 +9,7 @@ $title = "Login";
 $date = "September 29, 2016";
 $filename = "login.php";
 $description = "The login page ";
-include("header-2.php");
+include("header.php");
 ?>
 <?php
 //empty out error and result regardless of method that got you here
@@ -153,4 +153,4 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 			
 		
 		
-<?php include 'footer-2.php'; ?>
+<?php include 'footer.php'; ?>

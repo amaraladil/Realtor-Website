@@ -9,7 +9,7 @@ $title = "Register";
 $date = "September 28, 2016";
 $filename = "register.php";
 $description = "The register page ";
-include("header-2.php");
+include("header.php");
 ?>
 <?php
 /*
@@ -353,46 +353,5 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
         </div>
 </section>
 		
-		<!--
-			<tr>
-				<td align="right">*Phone Number: 
-				</td>
-				<td><input type="text" name="phone" value="<?php echo $phone; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Second Number: 
-				</td>
-				<td><input type="text" name="2ndPhone" value="<?php echo $secondPhone; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">FAX Number: 
-				</td>
-				<td><input type="text" name="fax" value="<?php echo $fax; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">*Prefered Contact Method: 
-				</td>
-				<td align="left">
-					
-					<?php
-					$table = 'contact_method';
-					echo build_radio($table,$selected_method)
-					?>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="submit" value="Register" /></td>
-			</tr>
-		</table>
 		
-		
-		</form>
-		
-		<br/>
-		 -->
-		
-		
-<?php include 'footer-2.php'; ?>
+<?php include 'footer.php'; ?>
