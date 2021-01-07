@@ -834,3 +834,15 @@ footer span a:hover{
 .policy .body-place p {
     padding-bottom: 18px;
 }
+
+.btn-back {
+    padding: 1em;
+    margin: 10px auto;
+}
+.btn-back form,
+.btn-back input {
+    margin: 10px;
+    width: 80%;
+    font-size: 30px;
+    font-weight: 500;
+}

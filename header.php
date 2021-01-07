@@ -37,7 +37,7 @@
     </div>
     <nav class="navbar">
         <div class="max-width">
-            <div class="logo"><a href="/index.php">Houses<span>Connected.</span></a></div>
+            <div class="logo"><a href="/">Houses<span>Connected.</span></a></div>
             <ul class="menu">
                 <?php
                 //Shows only for CLIENTS

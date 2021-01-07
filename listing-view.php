@@ -132,16 +132,13 @@ include("header.php");
 	$images = glob($dirname."*");
 	
 ?>
-<h1> Listing Display </h1>
-<hr/>
-<table style="width:50%" border="1px solid black">
-	<tr>
-		<th>Listing Image</th>
-		<th>Listing Description</th>
-	</tr>
-	<tr>
-		<td rowspan="2">
-			<?php
+<!-- about section start -->
+<section class="content-body result" id='result'>
+        <div class="max-width body-place">			
+			<h2 class="title"><?php echo pg_fetch_result($result, 0, "headline") ?></h2>
+			<div class="row-info">
+				<div class="column left">
+				<?php
 				if (file_exists("./listing/".pg_fetch_result($result, 0, "listing_id")."/".pg_fetch_result($result, 0, "listing_id")."_".pg_fetch_result($result, 0, "images").".jpg")) 
 				{
 				    echo "<img src=\"./listing/".pg_fetch_result($result, 0, "listing_id")."/".pg_fetch_result($result, 0, "listing_id")."_".pg_fetch_result($result, 0, "images").".jpg\" alt=\"House Image\" width=\"300px\"/>";
@@ -169,83 +166,77 @@ include("header.php");
 				}
 				
 			?>
-		</td>
+				</div>
+				<div class="column right">
+					<ul>
+						<li>Open house?: <?php echo get_property('open_house', pg_fetch_result($result, 0, "open_house"))?> </li>
+						<li>Finished Basement?: <?php echo get_property('finished_basement', pg_fetch_result($result, 0, "finished_basement"))?></li>
+						<li><?php echo get_property('purchase_type', pg_fetch_result($result, 0, "purchase_type"))?></li>
+						<li>Garage Type: <?php echo get_property('garage_type', pg_fetch_result($result, 0, "garage"))?></li>
+						<li>Near school?: <?php echo get_property('schools', pg_fetch_result($result, 0, "schools"))?></li>
+						<li>Status: <?php echo get_property('listing_status', strtolower(pg_fetch_result($result, 0, "status"))) ?></li>
+						<li>Washrooms: <?php echo get_property('washrooms',pg_fetch_result($result, 0, "bathrooms"))  ?></li>
+						<li>Bedrooms: <?php echo get_property('bedrooms',pg_fetch_result($result, 0, "bedrooms"))  ?></li>
+						<li>Description: <?php echo pg_fetch_result($result, 0, "description")  ?></li>
+					</ul>
+					<ul>
+						<li>Location: <?php echo get_property('cities',pg_fetch_result($result, 0, "city"))  ?></li>
+						<li>Postal Code: <?php echo pg_fetch_result($result, 0, "postal_code") ?></li>
+						<li>Price: $<?php echo number_format(pg_fetch_result($result, 0, "price") , 2)?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row-info">
+				<form action="<?php echo $actual_link; ?>" method="post">
+				<?php 
+					if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_ADMIN) 
+					{
+						//If list is already disabled, then no button
+						if (pg_fetch_result($result, 0, "status") == DISABLED)
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"disable\" value=\"Disabled Already\" disabled/>";
+						}
+						else
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"disable\" value=\"Disable\" />";
+						}
+						
+					}
+					else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_USER) 
+					{
+						//Checks if page has been favourited by user or not
+						if ($favouriteFound == 1)
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"unfavourite\" value=\"Unfavourite\" />";
+						}
+						else
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"favourite\" value=\"Favourite\" />";
+						}
+						
+						//Checks if page has been reported by user already
+						if ($reportFound == 1)
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"REPORTED\" value=\"Reported Already\" disabled/>";
+						}
+						else
+						{
+							echo "<input style=\"align: center\" type=\"submit\" name=\"report\" value=\"Report\" />";
+						}
+						
+					}
+				
+				
+				?>
+				
+				</form> 
+			</div>
+			<div class="row-info btn-back">
+				<form action="listing-view.php" method="post">
+					<input style="align: center" type="submit" name="submit" value="Back" />
+				</form>
+			</div>
+		</div>
+</section>
 
-		<td align="left" valign="top">
-		<h3><?php echo pg_fetch_result($result, 0, "headline")  ?></h3>
-		<ul>
-		<li>Open house?: <?php echo get_property('open_house', pg_fetch_result($result, 0, "open_house"))?> </li>
-		<li>Finished Basement?: <?php echo get_property('finished_basement', pg_fetch_result($result, 0, "finished_basement"))?></li>
-		<li><?php echo get_property('purchase_type', pg_fetch_result($result, 0, "purchase_type"))?></li>
-		<li>Garage Type: <?php echo get_property('garage_type', pg_fetch_result($result, 0, "garage"))?></li>
-		<li>Near school?: <?php echo get_property('schools', pg_fetch_result($result, 0, "schools"))?></li>
-		<li>Status: <?php echo get_property('listing_status', strtolower(pg_fetch_result($result, 0, "status"))) ?></li>
-		<li>Washrooms: <?php echo get_property('washrooms',pg_fetch_result($result, 0, "bathrooms"))  ?></li>
-		<li>Bedrooms: <?php echo get_property('bedrooms',pg_fetch_result($result, 0, "bedrooms"))  ?></li>
-		<li>Description: <?php echo pg_fetch_result($result, 0, "description")  ?></li>
-		</ul>
-		</td>
-
-	</tr>
-	<tr>
-		<td align="left" valign="top"><ul>
-			<li>Location: <?php echo get_property('cities',pg_fetch_result($result, 0, "city"))  ?></li>
-			<li>Postal Code: <?php echo pg_fetch_result($result, 0, "postal_code") ?></li>
-			<li>Price: $<?php echo number_format(pg_fetch_result($result, 0, "price") , 2)?></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td valign="top" colspan="2">
-			<form action="<?php echo $actual_link; ?>" method="post">
-			<?php 
-				if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_ADMIN) 
-				{
-					//If list is already disabled, then no button
-					if (pg_fetch_result($result, 0, "status") == DISABLED)
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"disable\" value=\"Disabled Already\" disabled/>";
-					}
-					else
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"disable\" value=\"Disable\" />";
-					}
-					
-				}
-				else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_USER) 
-				{
-					//Checks if page has been favourited by user or not
-					if ($favouriteFound == 1)
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"unfavourite\" value=\"Unfavourite\" />";
-					}
-					else
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"favourite\" value=\"Favourite\" />";
-					}
-					
-					//Checks if page has been reported by user already
-					if ($reportFound == 1)
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"REPORTED\" value=\"Reported Already\" disabled/>";
-					}
-					else
-					{
-						echo "<input style=\"align: center\" type=\"submit\" name=\"report\" value=\"Report\" />";
-					}
-					
-				}
-			
-			
-			?>
-			
-			</form>
-		</td>
-	</tr>
-	
-</table>
-
-<form action="listing-view.php" method="post">
-<p><input style="align: center" type="submit" name="submit" value="Back" /></p>
-</form>
 <?php include 'footer.php'; ?>

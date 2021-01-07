@@ -9,7 +9,7 @@ $title = "Listing Search";
 $date = "November 10, 2016";
 $filename = "index.php";
 $description = "The Listing search page";
-include("header-2.php");
+include("header.php");
 ?>
 <?php 
 $error = "";
@@ -378,4 +378,4 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 </section>
 
 
-<?php include 'footer-2.php'; ?>
+<?php include 'footer.php'; ?>
