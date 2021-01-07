@@ -9,7 +9,7 @@ $title = "Listing Search";
 $date = "November 10, 2016";
 $filename = "index.php";
 $description = "The Listing search page";
-include("header.php");
+include("header-2.php");
 ?>
 <?php 
 $error = "";
@@ -271,162 +271,111 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 }
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
-	<h1> Listing Search</h1>
-	<?php //___________________________USED TO DISPLAY THE CITIES
-		
-	$output = "";
-	$sql = 'SELECT * FROM '.$city_table;
-	$allOrNot = 0;
-	$city_start = true;
-	$result = pg_query(db_connect(), $sql);
-	$records = pg_num_rows($result);
-	for($i = 0; $i < $records; $i++)
-	{
-		if (isBitSet($i, $city))
-		{
-			if ($city_start == true)
-			{
-				$output = "Location: ". pg_fetch_result($result, $i, "property");
-			}
-			else
-			{
-				$output .= ", ".pg_fetch_result($result, $i, "property");
-			}
-			$allOrNot += 1;
-			
-			$city_start = false;
-		}
-		if ($allOrNot == $records || ($city == 0)) //IF ALL WERE PICKED OR NON WERE PICKED
-		{
-			$output = "Location: Durham Region";
-		}
-	}
-	
-	
-	
-	?>
-	<hr/>
-	<h2 style="text-align: center;"><?php echo $output; ?></h2>
-	<h3 style="text-align: center;"><?php echo $error; ?></h3>
-	
-	<table style="width:50%" border="0">
-		<tr>
-			<td align="left" valign="top">
-				Number of bedrooms:
-				<br/>
-				<?php 
-
-				echo build_checkbox($bed_table, $beds); 
-				?>
-		
-			</td>
-
-			<td align="left" valign="top">
-				Number of washrooms:
-				<br/>
-				<?php 
-				echo build_checkbox($wash_table, $wash); 
-				?>
+<!-- about section start -->
+<section class="content-body" id='search'>
+        <div class="max-width body-place  search">			
+            <h2 class="title">Listing Search</h2>
+			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post">
+				<?php //___________________________USED TO DISPLAY THE CITIES
 				
-			</td>
-
-			<td align="left" valign="top">
-				Open House?<br/>
+				$output = "";
+				$sql = 'SELECT * FROM '.$city_table;
+				$allOrNot = 0;
+				$city_start = true;
+				$result = pg_query(db_connect(), $sql);
+				$records = pg_num_rows($result);
+				for($i = 0; $i < $records; $i++)
+				{
+					if (isBitSet($i, $city))
+					{
+						if ($city_start == true)
+						{
+							$output = "Location: ". pg_fetch_result($result, $i, "property");
+						}
+						else
+						{
+							$output .= ", ".pg_fetch_result($result, $i, "property");
+						}
+						$allOrNot += 1;
+						
+						$city_start = false;
+					}
+					if ($allOrNot == $records || ($city == 0)) //IF ALL WERE PICKED OR NON WERE PICKED
+					{
+						$output = "Location: Durham Region";
+					}
+				}?>
 				
-				<?php 
-
-				echo build_checkbox($open_table, $open); 
-				?>
-			</td>
-
-			<td align="left" valign="top">
-			House containing a finished basement?<br/>
+				<h2 style="text-align: center;"><?php echo $output; ?></h2>
+				<h3 style="text-align: center;"><?php echo $error; ?></h3>
+				<div>
+					# of bedrooms:<br/>
 					<?php 
-
-				echo build_checkbox($base_table, $base); 
-				?> 
-				
-			</td>
-		</tr> <!-- END OF FIRST ROW-->
-
-		<tr>
-			<td valign="top" align ="left">
-				Type of listing: 
-				<br/>
+					echo build_checkbox($bed_table, $beds); 
+					?>
+				</div>
+				<div>
+					# of washrooms:<br/>
 					<?php 
-				
-				
-				
-				echo build_checkbox($type_table, $purchase); 
-				?>
-			</td>
-
-			<td valign="top">
-				Price for house: 
-				<br/>
-				Minimum price: <input type="text" name="minimum" value="<?php echo $minimum;?>" /><br/>
-				Maximum Price: <input type="text" name="maximum" value="<?php echo $maximum;?>" />
-				
-				
-			
-			</td>
-
-			<td valign="top" align="left">
-				Type of house: 
-				<br/>
-				<?php 
-				
-				
-				
-				
-				echo build_checkbox($property_table, $property_type); 
-				?>
-				
-			</td>
-
-			<td valign="top" align="left">
-				Garage Type: 
-				<br/>
+					echo build_checkbox($wash_table, $wash); 
+					?>
+				</div>
+				<div>
+					Open House?<br/>
 					<?php 
-				
-				
-				
-				echo build_checkbox($garage_table, $garage); 
-				?>
-			</td>
-		</tr> <!-- END OF ROW 2 -->
+					echo build_checkbox($open_table, $open); 
+					?>
+				</div>
+				<div>
+					House containing a finished basement?<br/>
+					<?php 
+					echo build_checkbox($base_table, $base); 
+					?>
+				</div>
+				<div>
+					Type of listing: 
+					<br/>
+					<?php 
+					echo build_checkbox($type_table, $purchase); 
+					?>
+				</div>
+				<div>
+					Price for house: 
+					<br/>
+					Minimum price: <input type="text" name="minimum" value="<?php echo $minimum;?>" /><br/>
+					Maximum Price: <input type="text" name="maximum" value="<?php echo $maximum;?>" />
+				</div>
+				<div>
+					Type of house: 
+					<br/>
+					<?php 
+					echo build_checkbox($property_table, $property_type); 
+					?>
+				</div>
+				<div>
+					Garage Type: 
+					<br/>
+					<?php 
+					echo build_checkbox($garage_table, $garage); 
+					?>
+				</div>
+				<div>
+					Property Options:<br/>
+					<?php 
+					echo build_checkbox($options_table, $options); 
+					?>
+				</div>
+				<div>
+					Near schools?<br/>
+					<?php 
+					echo build_checkbox($schools_table, $schools); 
+					?>
+				</div>
 
-		<tr>
-			<td  valign="top" align="left"  colspan="2">
-				Property Options:<br/>
-			<br/>
-				<?php 
+				<input style="align: center" type="submit" name="submit" value="Submit" />
+			</form>
+        </div>
+</section>
 
-				echo build_checkbox($options_table, $options); 
-				?>
-			</td>
 
-			<td align="left" valign ="top" colspan="2">
-			Near schools?<br/>
-			<?php 
-
-				
-				
-				echo build_checkbox($schools_table, $schools); 
-				?>
-			</td>
-
-		</tr> <!-- END OF ROW 3 -->
-		<tr>
-			<td colspan="4">
-				<input class="center" type="submit" name="submit" value="Search"/>
-			</td>
-		</tr>
-	</table>
-	
-</form>
-<br/>
-
-<br/>
-<?php include 'footer.php'; ?>
+<?php include 'footer-2.php'; ?>

@@ -9,7 +9,7 @@ $title = "Login";
 $date = "September 29, 2016";
 $filename = "login.php";
 $description = "The login page ";
-include("header-2.php");
+include("header.php");
 ?>
 <?php
 //empty out error and result regardless of method that got you here
@@ -128,29 +128,42 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 	
 }
 ?>
-<!-- about section start -->
-<section class="content-body" id='formSetup'>
-        <div class="max-width body-place">			
-			<h2 class="title">Login Page</h2>
-			<p>If your a realtor and don't have an account, please go to the <a href="./register.php">registration</a> page on the top bar.
-			<br/>
-            <h2 style="text-align: center;"><?php echo $output; ?></h2>
-			<h3 style="text-align: center;"><?php echo $error; ?></h3>
-			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
-				<p style="text-align: center;">Enter your login ID and password to connect to this system</p>
-				<div class="input-field">
-					<input type="text" name="id" value="<?php echo $id; ?>" size="30" required/>
-					<label>Username</label>
-				</div>
-				<div class="input-field">
-					<input type="password" name="pass" value="<?php echo $pass; ?>" size="30" required/> 
-					<label>Password</label>
-				</div>
-				<input type="submit" value="Log In" /></td>
-			</form>
-        </div>
-</section>
+
+		<h1>Realtor Login Page</h1>
+		<hr/>
+		<p>If your a realtor and don't have an account, please go to the <a href="./register.php">registration</a> page on the top bar.
+		<br/>
+		</p>
+		<h2 style="text-align: center;"><?php echo $output; ?></h2>
+		<h3 style="text-align: center;"><?php echo $error; ?></h3>
+		<p style="text-align: center;">Enter your login ID and password to connect to this system</p>
+		<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
+		<table style="border: none;
+				background-color: #e5f2ff;
+				width: auto;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;" cellspacing="15">
+			<tr>
+				<td>
+					Login ID: 
+				</td>
+				<td><input type="text" name="id" value="<?php echo $id; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td>Password: 
+				</td>
+				<td><input type="password" name="pass" value="<?php echo $pass; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="Log In" /></td>
+			</tr>
+		</table>
+		</form>
+		<br/>
 			
 		
 		
-<?php include 'footer-2.php'; ?>
+<?php include 'footer.php'; ?>

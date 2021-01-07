@@ -6,7 +6,7 @@ September 29, 2016
 */
 function displayCopyright()
 {
-	echo "&copy; JTAS Inc. ". date('Y');
+	echo "JTAS Inc. ". date('Y');
 }
 
 function display_phone_number($phone)

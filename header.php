@@ -12,65 +12,66 @@
 		ob_start();
 		
 	?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="images/LogoFinal_Icon.ico" />
-	<link rel="stylesheet" type="text/css" href="css/webd3201.css"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php echo $title; ?>  </title>	
+	<!-- <link rel="stylesheet" type="text/css" href="css/webd3201.css"/> -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/script.js"></script>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+    <title><?php echo $title; ?>  </title>	
 </head>
-<body class="text-color">
-<div id="container">
-	<div id="header">
-		<img src="images/LogoFinal2.png" alt="Web Logo" width="500" height="128"/>
-			<h1><?php echo WEBSITE_NAME; ?></h1>
-	</div>
-	<div id="sites">
-		<ul>
-			<li><a href="./index.php">Home Page</a></li>
-			<?php
-			//Shows only when the user is not logged-in
-			if (!isset($_SESSION['loggedin']))
-			{
-				echo "<li><a href=\"./login.php\">Login</a></li>";
-				echo "<li><a href=\"./register.php\">Register</a></li>";
-				echo "<li><a href=\"./password-request.php\">Password Request</a></li>";
-			}
-			?>
-			
-			<?php
-			//Shows only for CLIENTS
-			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_USER) 
-			{
-				echo "<li><a href=\"./welcome.php\">Welcome</a></li>";
-			}
-			//Shows only for AGENTS
-			else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_AGENT) 
-			{
-				echo "<li><a href=\"./dashboard.php\">Dashboard</a></li>";
-				echo "<li><a href=\"./listing-create.php\">List Create</a></li>";
-			}
-			//Shows only for ADMIN
-			else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_ADMIN) 
-			{
-				echo "<li><a href=\"./admin.php\">Admin</a></li>";
-				echo "<li><a href=\"./disabled-users.php\">Disabled Users</a></li>";
-			}
+<body>
+    <div class="scroll-up-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="/index.php">Houses<span>Connected.</span></a></div>
+            <ul class="menu">
+                <?php
+                //Shows only for CLIENTS
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_USER) 
+                {
+                    echo "<li><a href=\"./welcome.php\" class=\"menu-btn\">Welcome</a></li>";
+                }
+                //Shows only for AGENTS
+                else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_AGENT) 
+                {
+                    echo "<li><a href=\"./dashboard.php\" class=\"menu-btn\">Dashboard</a></li>";
+                    echo "<li><a href=\"./listing-create.php\" class=\"menu-btn\">List Create</a></li>";
+                }
+                //Shows only for ADMIN
+                else if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_ADMIN) 
+                {
+                    echo "<li><a href=\"./admin.php\" class=\"menu-btn\">Admin</a></li>";
+                    echo "<li><a href=\"./disabled-users.php\" class=\"menu-btn\">Disabled Users</a></li>";
+                }
 
-			?>
-			<!--<li><a href="./listing-create.php">List Create</a></li>-->
-			<li><a href="./listing-cities.php">Search</a></li>
-			
-			<?php
-			//Shows for logged in users
-			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) 
-			{
-				echo "<li><a href=\"./user-update.php\">Edit Profile</a></li>";
-				echo "<li><a href=\"./user-password.php\">Change Password</a></li>";
-				echo "<li><a href=\"./logout.php\">Log Out</a></li>";
-			}
-			?>
-		</ul> 
-	</div>
-	<div id="content-container">
+                ?>
+                <li><a href="listing-cities.php" class="menu-btn">Search</a></li>
+                <?php
+                //Shows only when the user is not logged-in
+                if (!isset($_SESSION['loggedin']))
+                {
+                    echo "<li><a href=\"login.php\" class=\"menu-btn\">Login</a></li>
+                    <li><a href=\"register.php\" class=\"menu-btn\">Register</a></li>";
+                }
+                ?>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    

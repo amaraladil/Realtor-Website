@@ -13,6 +13,11 @@ include("header.php");
 ?>
 
 <br/>
+<!-- about section start -->
+<section class="content-body result" id='result'>
+        <div class="max-width body-place">			
+			<h2 class="title">Search Result</h2>
+
 <?php
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $_SESSION['previousPage'] = $actual_link;
@@ -30,7 +35,7 @@ else
 
 if (isset($_GET ['submit']))
 {
-	$button = $_GET ['submit'];
+	$button = $_GET['submit'];
 	$search = $_SESSION['Where']; 
 }  
 if(strlen($search)<=1)
@@ -64,8 +69,9 @@ else
 	$foundnum = pg_num_rows($run);
 	    
 	if ($foundnum==0) // IF no matches are found
-	echo "Sorry, there are no matching result for your critera<br/>";
-	 
+	{
+		echo "Sorry, there are no matching result for your critera<br/>";
+	} 
 	else if ($foundnum==1) //REDIRECTS THE USER TO THE LISTING VIEW PAGE
 	{
 		$listing_id = pg_fetch_result($run, 0, "listing_id");
@@ -85,15 +91,15 @@ else
 		$max_pages = ceil($foundnum / $per_page);
 		
 		//Page starts at the first records
-		if(!$start)
-			$start=0; 
+		if(!$start){
+			$start=0;
+		} 
 		
 		//Set up the query
 		$getquery = pg_query(db_connect(), $_SESSION['Where']. " ORDER BY listings.listing_id DESC LIMIT $per_page OFFSET $start");
 		//echo $_SESSION['Where']. " ORDER BY listings.listing_id DESC LIMIT $per_page OFFSET $start <br>";  
 		
 		//_______________________________________________________________________________________________________CREATES THE TABLE
-		echo "\n<table border=\"0\">";
 		while($runrows = pg_fetch_assoc($getquery))
 		{
 			$listing_id = $runrows['listing_id'];
@@ -109,33 +115,28 @@ else
 			$schools = $runrows['schools'];
 			$image = $runrows['images'];
 			
-			echo "\n<tr><td>";//IMAGE LOAD SECTION
+			echo "\n<div class=\"row-info\">";
+			echo "\n<div class=\"column left\">";//IMAGE LOAD SECTION
 			if (file_exists("./listing/$listing_id/".$listing_id."_".$image.".jpg")) 
 			{
-			    echo "<img src=\"./listing/$listing_id/".$listing_id."_".$image.".jpg\" alt=\"House Image\" width=\"300px\"/>";
+			    echo "<img src=\"./listing/$listing_id/".$listing_id."_".$image.".jpg\" alt=\"House Image\" width=\"200px\"/>";
 			}
 			else
 			{
 				echo "<img src=\"images/notFound.jpg\" alt=\"Image Not Found\" width=\"300px\" />";
 			}
-			echo "\n</td>";
-			echo "\n<td align=\"left\">";
+			echo "\n</div>";
+			echo "\n<div class=\"column right\">";
 			
 			//THE INFORMATION OF THE HOUSE
-			echo "<br/><b><a class=\"homelist\" href=\"listing-view.php?submit=Search+source+code&amp;listing_id=$listing_id\" >$headline </b> </a>
-			<br/>BUILDING TYPE: ".	get_property('property_type',$property)."
-			<br/>Bedroom: ".	get_property('bedrooms',$bed) . "
-			<br/>Bathroom: ".	get_property('washrooms',$bath). " 
+			echo "<a class=\"homelist\" href=\"listing-view.php?submit=Search+source+code&amp;listing_id=$listing_id\" >$headline </a>
 			<br/>LOCATION: ".get_property('cities',$city)." 
-			
 			<br/>PRICE: $".	number_format($price,2) . " ";	
-			echo "\n</td></tr>";
-			echo "\n<tr><td colspan=\"2\">";
-			echo "\n\t<hr/>";
-			echo "\n</td></tr>";
+			echo "\n</div>";
+			echo "\n</div>";
 		}
 		
-		echo "\n</table>";
+		
 		  
 		//Pagination Starts
 		echo "<center>";
@@ -232,6 +233,8 @@ else
 	} 
 } 
 ?>
+</div>
+</section>
 
 
 <br/>

@@ -9,7 +9,7 @@ $title = "Register";
 $date = "September 28, 2016";
 $filename = "register.php";
 $description = "The register page ";
-include("header-2.php");
+include("header.php");
 ?>
 <?php
 /*
@@ -234,13 +234,13 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 	}
 	
 	//----------------------------------------------------------------------------------------------CONTACT METHOD
-	if (isset($_POST['contact_method']))//Sets the variable
+	if (isset($_POST['submit']) && isset($_POST['contact_method']))//Sets the variable
 	{
 		$selected_method = $_POST['contact_method'];
 	}
 	else
 	{
-		$error .= "\n Prefered Contact Method cannot be empty" . $_POST['contact_method'];
+		$error .= "\n Prefered Contact Method cannot be empty";
 	}
 	
 	//if error is an empty string
@@ -260,100 +260,122 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 	
 }
 ?>
-<!-- about section start -->
-<section class="content-body" id='formSetup'>
-        <div class="max-width body-place">			
-			<h2 class="title">Registration Page</h2>
-            <h2 style="text-align: center;"><?php echo $output; ?></h2>
-			<h3 style="text-align: center;"><?php echo $error; ?></h3>
-			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
-				<h3 style="text-align: center;">Fill in all Account Information </h3>
-				<h4 style="text-align: center;">&nbsp;&nbsp;   * means they are required</h4>
-				<div class="input-field">
-					<input type="text" name="id" value="<?php echo $id; ?>" size="30" required/>
-					<label>Username*</label>
-				</div>
-				<div class="input-field">
-					<input type="password" name="pass" value="<?php echo $pass; ?>" size="30" required/> 
-					<label>Password*</label>
-				</div>
-				<div class="input-field">
-					<input type="password" name="vPass" value="" size="30" required/>
-					<label>Confirm Password*</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="email" value="<?php echo $email; ?>" size="30" required/>
-					<label>Email Address*</label>
-				</div>
-				<div class="otherForm">
+
+		<h1> Registration Page</h1>
+		<hr/>
+		
+		<h2 style="text-align: center;"><?php echo $output; ?></h2>
+		<h3 style="text-align: center;"><?php echo $error; ?></h3>
+		<h3 style="text-align: center;">Fill in all Account Information </h3>
+		<h4 style="text-align: center;">&nbsp;&nbsp;   * means they are required</h4>
+		
+		<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
+		<table style="border: 1;
+				background-color: #e5f2ff;
+				width: auto;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;" cellspacing="15">
+			<tr>
+				<td colspan="2">
+					Log-in Information
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					*Login ID: 
+				</td>
+				<td><input type="text" name="id" value="<?php echo $id; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">*Password: 
+				</td>
+				<td><input type="password" name="pass" value="" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">*Confirm Password: 
+				</td>
+				<td><input type="password" name="vPass" value="" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">*Email: 
+				</td>
+				<td><input type="text" name="email" value="<?php echo $email; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">You a Realtor?: 
+				</td>
+				<td align="left">
 					<input type="checkbox" name="realtor" value="realtor"  <?php echo $out = (isset($_POST['realtor']) == true)? "checked": "";  ?> />
-					<label>You a Realtor?</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="first" value="<?php echo $first; ?>" size="30" required/>
-					<label>First Name*</label>
-				</div>
-				<div class="input-field">
-				<input type="text" name="last" value="<?php echo $last; ?>" size="30" required />
-					<label>Last Name*</label>
-				</div>
-				<div class="otherForm">
-					<?php
-					$table = 'salutation';
-					echo build_simple_dropdown($table, $salutation);
-					?>
-					<label>Salutation</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="street" value="<?php echo $street; ?>" size="30"  /> 
-					<label>Street Address 1</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="2ndStreet" value="<?php echo $secondStreet; ?>" size="30" /> 
-					<label>Street Address 2</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="city" value="<?php echo $city; ?>" size="30" />  
-					<label>City</label>
-				</div>
-				<div class="otherForm">
-					<?php 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					Personal Information
+					
+				</td>
+			</tr>
+			<tr>
+				<td align="right">*First Name: 
+				</td>
+				<td><input type="text" name="first" value="<?php echo $first; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">*Last Name: 
+				</td>
+				<td><input type="text" name="last" value="<?php echo $last; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Salutation: 
+				</td>
+				<td align="left"> 
+					    <?php
+						$table = 'salutation';
+						echo build_simple_dropdown($table, $salutation);
+					    ?>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Street Name: 
+				</td>
+				<td><input type="text" name="street" value="<?php echo $street; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Second Street: 
+				</td>
+				<td><input type="text" name="2ndStreet" value="<?php echo $secondStreet; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">City: 
+				</td>
+				<td><input type="text" name="city" value="<?php echo $city; ?>" size="30" /> <br/>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Province: 
+				</td>
+				<td align="left"> 
+						<?php 
 						$table = 'provinces';
 						echo build_simple_dropdown($table, $provinces);
-					?> 
-					<label>Province:</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="postal" value="<?php echo $postal; ?>" size="30" /> 
-					<label>Postal Code</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="phone" value="<?php echo $phone; ?>" size="30" required/>
-					<label>Phone Number*</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="2ndPhone" value="<?php echo $secondPhone; ?>" size="30" />
-					<label>Phone Number 2</label>
-				</div>
-				<div class="input-field">
-					<input type="text" name="fax" value="<?php echo $fax; ?>" size="30" />
-					<label>Fax Number</label>
-				</div>
-				<div class="radioForm">
-					<div>
-					Preferred contact method:
-					</div>
-						<?php
-						$table = 'contact_method';
-						echo build_radio($table,$selected_method)
-						?>
-				</div>
-				<input type="submit" value="Log In" /></td>
-			</form>
-        </div>
-</section>
-		
-		<!--
+					    ?>
+		            
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Postal Code: 
+				</td>
+				<td><input type="text" name="postal" value="<?php echo $postal; ?>" size="30" /> <br/>
+				</td>
+			</tr>
 			<tr>
 				<td align="right">*Phone Number: 
 				</td>
@@ -392,7 +414,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 		</form>
 		
 		<br/>
-		 -->
 		
 		
-<?php include 'footer-2.php'; ?>
+		
+<?php include 'footer.php'; ?>

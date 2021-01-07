@@ -99,7 +99,7 @@ function build_radio($table,$selected)
 	$records = pg_num_rows($result);
 	for($i = 0; $i < $records; $i++){
 		$checked = (pg_fetch_result($result, $i, "value") == $selected)? "checked":"";
-		$output .= "\n<input type=\"radio\" name=\"".$table."\" value=\"".pg_fetch_result($result, $i, "value")."\" ".$checked."/> ".pg_fetch_result($result, $i, "property")."<br/>";		
+		$output .= "\n<label><input type=\"radio\" name=\"".$table."\" value=\"".pg_fetch_result($result, $i, "value")."\" ".$checked."/><span>".pg_fetch_result($result, $i, "property")."</span></label>";		
 	}
 	return $output;
 }
@@ -126,7 +126,7 @@ function build_checkbox($table,$preselected)
 	$records = pg_num_rows($result);
 	for($i = 0; $i < $records; $i++){
 		$checked = isBitSet($i, $preselected)? " checked=\"checked\" ": "";
-		$output .= "\n<input type=\"checkbox\" name=\"".$table."[]\" value=\"".pg_fetch_result($result, $i, "value")."\" ".$checked."/> ".pg_fetch_result($result, $i, "property")."<br/>";		
+		$output .= "\n<label><input type=\"checkbox\" name=\"".$table."[]\" value=\"".pg_fetch_result($result, $i, "value")."\" ".$checked."/> <span> ".pg_fetch_result($result, $i, "property")."</span></label>";		
 	}
 	return $output;
 }
