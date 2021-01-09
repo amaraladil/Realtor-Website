@@ -31,9 +31,11 @@ include("header.php");
 	}
 		
 	$sql = 'SELECT * FROM listings WHERE listing_id = ' . $_SESSION['listing_id'];
-	//echo "<BR>".$sql;
 	$result = pg_query(db_connect(), $sql);
 	$records = pg_num_rows($result);
+
+	$owner = pg_execute(db_connect(),"user_check",array(pg_fetch_result($result, 0, "user_id")));
+	$owner2 = pg_execute(db_connect(),"Get_Personal",array(pg_fetch_result($result, 0, "user_id")));
 	
 	//Admin can check all pages
 	if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == GET_ADMIN)
@@ -150,6 +152,9 @@ include("header.php");
 				
 				$i = 1;
 				echo "<br/>";
+				array_shift($images);//Removes the first array element
+
+				//Shows the rest of the images about the house
 				foreach($images as $image) {
 					
 					//Searchs for the underscore
@@ -158,10 +163,6 @@ include("header.php");
 					$rest = substr($image, $testeee, 1);
 					
 				    echo '<img src="'.$image.'" width="50px" /> ';
-					if ($i == 3)
-					{
-						echo "<br/>";
-					}
 					$i +=1;
 				}
 				
@@ -184,6 +185,15 @@ include("header.php");
 						<li>Postal Code: <?php echo pg_fetch_result($result, 0, "postal_code") ?></li>
 						<li>Price: $<?php echo number_format(pg_fetch_result($result, 0, "price") , 2)?></li>
 					</ul>
+				</div>
+			</div>
+			<div class="row-info">
+				<div class="column right">
+					<h2>Seller: </h2>
+					<p>Name: <?php echo pg_fetch_result($owner2, 0, "first_name")?> <?php echo pg_fetch_result($owner2, 0, "last_name")?> </p>
+					<p>Email: <?php echo pg_fetch_result($owner, 0, "email_address")?></p>
+					<p>Main phone number: <?php echo pg_fetch_result($owner2, 0, "primary_phone_number")?></p>
+					<p>Second phone number: <?php echo pg_fetch_result($owner2, 0, "secondary_phone_number")?></p>
 				</div>
 			</div>
 			<div class="row-info">

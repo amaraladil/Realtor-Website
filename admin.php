@@ -16,8 +16,11 @@ include("header.php");
 	$_SESSION['previousPage'] = $actual_link;
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['user_type'] == GET_ADMIN) 
 	{
-		echo "<h1>Welcome to the Admin's area, " . $_SESSION['username'] . "! </h1>";
-		echo "\n<hr/>";
+		echo "<section class=\"content-body result\" id='result'>
+			<div class=\"max-width body-place\">			
+				<h2 class=\"title\">Welcome to the Admin's area, " . $_SESSION['username'] . "!</h2>
+				<div class=\"row-info\">";
+
 		echo "\n<br/>Password: ".$_SESSION['password']."  User Type: ".$_SESSION['user_type']."";
 		echo "\n<br/>Email: " .$_SESSION['email']. "   Enrolled Date: ". $_SESSION['enrol']."";
 		echo "\n<br/> Last Access: ".$_SESSION['last_access']."";
@@ -223,7 +226,9 @@ include("header.php");
 			echo "\n</table>";
 				
 		echo "</form>";
-		echo "<br/>";
+		echo "</div>
+			</div>
+		</section>";
 		
 		
 		
@@ -231,7 +236,7 @@ include("header.php");
 		
 	} else 
 	{
-		echo "<h1>Please log in first to see this page.</h1>";
+		header("Location: /");
 	}
 	?>
 <?php include 'footer.php'; ?>

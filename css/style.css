@@ -664,9 +664,9 @@ footer span a:hover{
     border: 2px #9230af;
 }
 
-#formSetup .title::after{
+/* #formSetup .title::after{
     content: "enter credentials";
-}
+} */
 #formSetup input{
     padding: 10px 0;
     margin-bottom: 30px;
@@ -675,6 +675,8 @@ footer span a:hover{
     outline: none;
     border: none;
     border-bottom: 2px solid #111;
+    border-left: 2px thin #111;
+    border-right: 2px thin #111;
     width: 100%;
 }
 #formSetup form p {
@@ -691,8 +693,12 @@ footer span a:hover{
     position: relative;
 }
 
-.otherForm, .radioForm {
+.radioForm {
     padding-bottom: 15px;
+}
+
+.otherForm {
+    padding-bottom: 30px;
 }
 
 .otherForm label {
@@ -700,6 +706,25 @@ footer span a:hover{
     top: 0;
     left: 0;
     color: #f7487d;
+}
+
+.otherForm select {
+    padding: 0 3px;
+    text-align: center;
+    width: 50%;
+    top: 15px;
+    margin-top: 10px;
+    position: inherit;
+}
+
+.otherForm textarea {
+    padding: 0 3px;
+    top: 15px;
+    margin-top: 10px;
+    position: inherit;
+    width: 100%;
+    height: 100px;
+    resize: none;
 }
 
 .radioForm div {
@@ -710,7 +735,7 @@ footer span a:hover{
 .radioForm input[type="radio"] {
     opacity: 0;
     position: fixed;
-    width: 0;
+    width: 0 !important;;
   }
 
 .radioForm label span{
@@ -742,6 +767,15 @@ footer span a:hover{
     transition: .5s;
 }
 
+#formSetup form .input-field input[disabled] ~ label{
+    top: -15px !important;
+    color: #f7487d;
+}
+
+#formSetup .otherForm input[type='submit'] {
+    top: 25px;
+    position: inherit;
+}
 
 #formSetup input[type=submit] {
     border: none;
@@ -762,11 +796,11 @@ footer span a:hover{
     height: 1600px;
 }
 
-#formSetup input:focus ~ label,
-#formSetup input:valid ~ label,
-#formSetup input:active ~ label {
-    top: -12px;
-    color: #f7487d;
+#formSetup form .input-field label.active,
+#formSetup form .input-field input:focus + label,
+#formSetup form .input-field input:active + label {
+    top: -15px !important;
+    color: #f7487d !important;
 }
 
 .search form div {
@@ -779,9 +813,9 @@ footer span a:hover{
 }
 
 /* search section styling */
-#result .title::after{
+/* #result .title::after{
     content: "complete";
-}
+} */
 #result .row-info .left{
     width: 45%;
 }

@@ -269,6 +269,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
 				<h3 style="text-align: center;">Fill in all Account Information </h3>
 				<h4 style="text-align: center;">&nbsp;&nbsp;   * means they are required</h4>
+				<br/>
 				<div class="input-field">
 					<input type="text" name="id" value="<?php echo $id; ?>" size="30" required/>
 					<label>Username*</label>

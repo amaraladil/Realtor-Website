@@ -223,27 +223,21 @@ $output = "";
 	
 	
 ?>
-<h1> Image Upload </h1>
-<hr/>
-	<br/>
-		<h2 style="text-align: center;"><?php echo $output; ?></h2>
-		<h3 style="text-align: center;"><?php echo $error; ?></h3>
-	<br/>
-	<br/>
-	<form id="uploadform" enctype="multipart/form-data" method="post" action="<?php echo $actual_link; ?>">
-		<strong>Select image for upload: </strong>
-		<input type="file" name="fileToUpload" id="fileToUpload">
-		<input type="submit" value="Upload Image" name="submit">
-	</form>
+<section class="content-body" id='formSetup'>
+        <div class="max-width body-place">			
+			<h2 class="title">Image Upload</h2>
+			<h2 style="text-align: center;"><?php echo $output; ?></h2>
+			<h3 style="text-align: center;"><?php echo $error; ?></h3>
+			<form id="uploadform" enctype="multipart/form-data" method="post" action="<?php echo $actual_link; ?>">
+				<strong>Select image for upload: </strong>
+				<input type="file" name="fileToUpload" id="fileToUpload" required/>
+				<input type="submit" value="Upload Image" name="submit"/>
+			</form>
 	<br/><br/>
 	<form action="<?php echo $actual_link; ?>" method="post" enctype="multipart/form-data">
-		<center>
 		    <input type="submit" value="Set Main Image" name="save">
-			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" value="Delete Chosen Images" name="delete">
-			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="submit" value="Go Back to Update Page" name="goBack">
-		</center>
 
 <?php
 
@@ -276,7 +270,9 @@ echo "<table border=\"1\">";
 	}
 	
 echo "</table>";
-echo "</form>";
+echo "</form>
+</div>
+</section>"
 
 ?>
 <br>

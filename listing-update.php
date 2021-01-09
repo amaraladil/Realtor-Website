@@ -255,144 +255,119 @@ Warning: pg_execute() [function.pg-execute]: Query failed: ERROR: null value in 
 }
 	 	 	
 ?>
-<form action="<?php echo $actual_link;  ?>" method="post" >
-	<h1> Listing Update</h1>
-	<hr/>
-	<h2 style="text-align: center;"><?php echo $output; ?></h2>
-	<h3 style="text-align: center;"><?php echo $error; ?></h3>
-	<h3 style="text-align: center;">[ All of the inputs must not be empty when editting. ]</h3>
-	<table style="width:50%" border="1">
-		<tr>
-			<td align="left" valign="top">
-				Number of bedrooms:
+<section class="content-body" id='formSetup'>
+        <div class="max-width body-place">			
+			<h2 class="title">Listing Update</h2>
+			<form action="<?php echo $actual_link;  ?>" method="post" >
+				<h2 style="text-align: center;"><?php echo $output; ?></h2>
+				<h3 style="text-align: center;"><?php echo $error; ?></h3>
+				<h3 style="text-align: center;">[ Inputs must not be empty when editting. ]</h3>
 				<br/>
-				<?php 
-				$table = 'bedrooms';
-				echo build_dropdown($table, $beds); 
-				?>
-			</td>
-
-			<td align="left" valign="top">
-				Number of washrooms:
-				<br/>
-				<?php 
-				$table = 'washrooms';
-				echo build_dropdown($table, $wash);
-				?>
-			</td>
-
-			<td align="left" valign="top">
-				Open House?<br/>
-				
-				<?php 
+				<div class="otherForm">
+					<?php
+					$table = 'bedrooms';
+					echo build_simple_dropdown($table, $beds);
+					?>
+					<label>Number of bedrooms:</label>
+				</div>
+				<div class="otherForm">
+					<?php 
+					$table = 'washrooms';
+					echo build_dropdown($table, $wash);
+					?>
+					<label>Number of Washrooms:</label>
+				</div>
+				<div class="radioForm">
+					<div>
+					Open House?:
+					</div>
+					<?php 
 					$table = 'open_house';
 					echo build_radio($table, $open);
-				?>
-			</td>
-
-			<td align="left" valign="top">
-			Finished basement?<br/>
-				
-				<?php 
+					?>
+				</div>
+				<div class="radioForm">
+					<div>
+					Finished basement?:
+					</div>
+					<?php 
 					$table = 'finished_basement';
-					echo build_radio($table, $basement);
-				?>
-			</td>
-		</tr>
-
-		<tr>
-			<td valign="top" align ="left">
-				Type of listing: 
-				<?php 
-				$table = 'purchase_type';
-				echo build_dropdown($table, $purchase);
-				?>
-			</td>
-
-			<td valign="top">
-				Price: 
-				<input type="text" name="price" value="<?php echo $price;?>" />
-			</td>
-
-			<td valign="top">
-				Type of house: 
-				<?php 
-				$table = 'property_type';
-				echo build_dropdown($table, $property); 
-				?>
-			</td>
-
-			<td valign="top">
-				Garage Type: 
-				<?php
-				$table = 'garage_type';
-			    echo build_dropdown($table, $garage); ?>
-			</td>
-		</tr>
-
-		<tr>
-			<td valign="top" align ="left">
-				Upload an image<input type="submit" name="upload"  value="Upload Page" />
-				<br/> Current Image: <?php echo pg_fetch_result($query, 0, "images"); ?>
-				<br/>
-				<br/>
-			</td>
-
-			<td colspan="2" valign="top" align ="left">
-				Description:
-				<textarea name = "description" rows="4" cols="50"><?php echo htmlspecialchars($info);?></textarea>
-			</td>
-
-
-
-			<td valign="top">
-			Headline: 
-
-			<input type="text" name="headline" value="<?php echo $headline;?>" />
-			</td>
-
-			</tr>
-
-			<tr>
-			<td  valign="top" align="left">
-				Property Options:<br/>
-				<?php 
-				$table = 'property_options';
-				echo build_dropdown($table, $extraoptions);?>
-			</td>
-
-			<td  valign="top" align="left">
-				Status:<br/>
-				<?php 
-				$table = 'listing_status';
-				echo build_radio($table, $status);
-				?>
-			</td>
-
-			<td align="left" valign ="top">
-			Near Schools?<br/>
-			<?php 
-				$table = 'schools';
-				echo build_radio($table, $schools);
-			?>
-			</td>
-
-			<td align="left" valign="top">
-				Postal Code: 
-				<input type="text" name="postal" value="<?php echo $postal ?>" /><br/>
-				<br/>City:
-				<?php 
-				$table = 'cities';
-				echo build_dropdown($table, $cities);
-				?>
-			</td>
-		</tr>
-
-
-	</table>
-	<p>
-	<input type="submit" name="submit" value="Update Listing"/></p>
-</form>
-
-
+					echo build_radio($table, $open);
+					?>
+				</div>
+				<div class="otherForm">
+					<?php 
+					$table = 'purchase_type';
+					echo build_dropdown($table, $purchase);
+					?>
+					<label>Type of Listing:</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="price" value="<?php echo $price; ?>" size="30" />
+					<label>Price:</label>
+				</div>
+				<div class="otherForm">
+					<?php 
+					$table = 'property_type';
+					echo build_dropdown($table, $property); 
+					?>
+					<label>Type of House:</label>
+				</div>
+				<div class="otherForm">
+					<?php
+					$table = 'garage_type';
+					echo build_dropdown($table, $garage); ?>
+					<label>Garage Type:</label>
+				</div>
+				<div class="otherForm">
+					<input type="submit" name="upload"  value="Upload Page" />
+					<label> Current Image: <?php echo pg_fetch_result($query, 0, "images"); ?></label>
+				</div>
+				<div class="otherForm">
+					<textarea name = "description" rows="4" cols="30"><?php echo htmlspecialchars($info);?></textarea>
+					<label>Description:</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="headline" value="<?php echo $headline; ?>" size="30" />
+					<label>Headline:</label>
+				</div>
+				<div class="otherForm">
+					<?php 
+					$table = 'property_options';
+					echo build_dropdown($table, $extraoptions);?>
+					<label>Property Options:</label>
+				</div>
+				<div class="radioForm">
+					<div>
+					Status:
+					</div>
+					<?php 
+					$table = 'listing_status';
+					echo build_radio($table, $status);
+					?>
+				</div>
+				<div class="radioForm">
+					<div>
+					Near a School:
+					</div>
+					<?php 
+						$table = 'schools';
+						echo build_radio($table, $schools);
+					?>
+				</div>
+				<div class="input-field">
+					<input type="text" name="postal" value="<?php echo $postal; ?>" size="30" />
+					<label>Postal Code:</label>
+				</div>
+				<div class="otherForm">
+					<?php 
+					$table = 'cities';
+					echo build_dropdown($table, $cities);
+					?>
+					<label>City:</label>
+				</div>
+				<input type="submit" name="submit" value="Update Listing"/>
+			</form>
+		</div>
+</section>
 <?php include 'footer.php'; ?>

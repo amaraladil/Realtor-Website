@@ -203,140 +203,87 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 		
 		pg_execute(db_connect(),"update_users",array($email,$_SESSION['username']) );
 		pg_execute(db_connect(),"update_people",array($salutation,$first,$last,$street,$secondStreet,$city,$provinces,$postal,$phone,$secondPhone,$fax,$selected_method, $_SESSION['username']) );
-		
 	}
-	
 	
 }
 ?>
-
-		<h1> Update Information Page</h1>
-		<hr/>
-		
-		<h2 style="text-align: center;"><?php echo $output; ?></h2>
-		<h3 style="text-align: center;"><?php echo $error; ?></h3>
-		<h3 style="text-align: center;">Fill in fields you wish to update</h3>
-		<h4 style="text-align: center;">&nbsp;&nbsp;   * means this field cannot be empty</h4>
-		
-		<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
-		<table style="border: 1;
-				background-color: #e5f2ff;
-				width: auto;
-				text-align: center;
-				margin-left: auto;
-				margin-right: auto;" cellspacing="15">
-			<tr>
-				<td colspan="2">
-					<u>Log-in Information</u>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">*Email: 
-				</td>
-				<td><input type="text" name="email" value="<?php echo $email; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<u>Personal Information</u>
-					
-				</td>
-			</tr>
-			<tr>
-				<td align="right">*First Name: 
-				</td>
-				<td><input type="text" name="first" value="<?php echo $first; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">*Last Name: 
-				</td>
-				<td><input type="text" name="last" value="<?php echo $last; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Salutation: 
-				</td>
-				<td align="left"> 
-					    <?php
-						$table = 'salutation';
-						echo build_simple_dropdown($table, $salutation);
-					    ?>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Street Name: 
-				</td>
-				<td><input type="text" name="street" value="<?php echo $street; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Second Street: 
-				</td>
-				<td><input type="text" name="2ndStreet" value="<?php echo $secondStreet; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">City: 
-				</td>
-				<td><input type="text" name="city" value="<?php echo $city; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Province: 
-				</td>
-				<td align="left"> 
-						<?php 
+<!-- form section start -->
+<section class="content-body" id='formSetup'>
+        <div class="max-width body-place">			
+			<h2 class="title">Update Information Page</h2>			
+			<h2 style="text-align: center;"><?php echo $output; ?></h2>
+			<h3 style="text-align: center;"><?php echo $error; ?></h3>
+			<h3 style="text-align: center;">Fill in fields you wish to update</h3>
+			<h4 style="text-align: center;">&nbsp;&nbsp;   * cannot be empty</h4>
+			
+			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
+				<div class="input-field">
+					<input type="text" name="email" value="<?php echo $email; ?>" size="30" required/>
+					<label>Email Address*</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="first" value="<?php echo $first; ?>" size="30" required/>
+					<label>First Name*</label>
+				</div>
+				<div class="input-field">
+				<input type="text" name="last" value="<?php echo $last; ?>" size="30" required />
+					<label>Last Name*</label>
+				</div>
+				<div class="otherForm">
+					<?php
+					$table = 'salutation';
+					echo build_simple_dropdown($table, $salutation);
+					?>
+					<label>Salutation</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="street" value="<?php echo $street; ?>" size="30"  /> 
+					<label>Street Address 1</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="2ndStreet" value="<?php echo $secondStreet; ?>" size="30" /> 
+					<label>Street Address 2</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="city" value="<?php echo $city; ?>" size="30" />  
+					<label>City</label>
+				</div>
+				<div class="otherForm">
+					<?php 
 						$table = 'provinces';
 						echo build_simple_dropdown($table, $provinces);
-					    ?>
-		            
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Postal Code: 
-				</td>
-				<td><input type="text" name="postal" value="<?php echo $postal; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">*Phone Number: 
-				</td>
-				<td><input type="text" name="phone" value="<?php echo $phone; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Second Number: 
-				</td>
-				<td><input type="text" name="2ndPhone" value="<?php echo $secondPhone; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">FAX Number: 
-				</td>
-				<td><input type="text" name="fax" value="<?php echo $fax; ?>" size="30" /> <br/>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Prefered Contact Method: 
-				</td>
-				<td align="left">
-					
-					<?php
-					$table = 'contact_method';
-					echo build_radio($table,$selected_method)
-					?>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="submit" value="Edit Profile" /></td>
-			</tr>
-		</table>
-		
-		
-		</form>
-		
-		<br/>
+					?> 
+					<label>Province:</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="postal" value="<?php echo $postal; ?>" size="30" /> 
+					<label>Postal Code</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="phone" value="<?php echo $phone; ?>" size="30" required/>
+					<label>Phone Number*</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="2ndPhone" value="<?php echo $secondPhone; ?>" size="30" />
+					<label>Phone Number 2</label>
+				</div>
+				<div class="input-field">
+					<input type="text" name="fax" value="<?php echo $fax; ?>" size="30" />
+					<label>Fax Number</label>
+				</div>
+				<div class="radioForm">
+					<div>
+					Preferred contact method:
+					</div>
+						<?php
+						$table = 'contact_method';
+						echo build_radio($table,$selected_method)
+						?>
+				</div>
+				<input type="submit" name="submit" value="Edit Profile" />
+			</form>
+		</div>
+</section>
 		
 		
 		

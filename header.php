@@ -20,14 +20,12 @@
 	<link rel="shortcut icon" href="images/LogoFinal_Icon.ico" />
 	<!-- <link rel="stylesheet" type="text/css" href="css/webd3201.css"/> -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/script.js"></script>
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
     <title><?php echo $title; ?>  </title>	
 </head>
@@ -66,6 +64,15 @@
                 {
                     echo "<li><a href=\"login.php\" class=\"menu-btn\">Login</a></li>
                     <li><a href=\"register.php\" class=\"menu-btn\">Register</a></li>";
+                }
+                ?>
+                <?php
+                //Shows for logged in users
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) 
+                {
+                    echo "<li><a href=\"./user-update.php\">Edit Profile</a></li>";
+                    echo "<li><a href=\"./user-password.php\">Change Password</a></li>";
+                    echo "<li><a href=\"./logout.php\">Log Out</a></li>";
                 }
                 ?>
             </ul>

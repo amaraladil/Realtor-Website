@@ -32,11 +32,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
 		$check = (isset($_POST['chkShowMore']) )? 'checked=true': '';
 		$_SESSION['ShowMore'] = $check;
 	}
-	
-	
-	
-	echo "<h1>Welcome to the Agent's area, " . $_SESSION['username'] . "! </h1>";
-	echo "\n<hr/>";
+
+	echo "<section class=\"content-body result\" id='result'>
+			<div class=\"max-width body-place\">			
+				<h2 class=\"title\">Welcome to the Agent's area, " . $_SESSION['username'] . "!</h2>
+				<div class=\"row-info\">";
+		
 	echo "\n<br/>Password: ".$_SESSION['password']."  User Type: ".$_SESSION['user_type']."";
 	echo "\n<br/>Email: " .$_SESSION['email']. "   Enrolled Date: ". $_SESSION['enrol']."";
 	echo "\n<br/> Last Access: ".$_SESSION['last_access']."";
@@ -264,11 +265,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
 			} 
 			echo "</center>";
 	echo "</form>";
-	echo "<br/>";
+	echo "</div>
+	</div>
+</section>";
 }
 else
 {
-	header("Location: index.php");
+	header("Location: /");
 }
 ?>
 <?php include 'footer.php'; ?>

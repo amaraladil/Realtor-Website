@@ -1,4 +1,13 @@
 $(document).ready(function(){
+    //Sets the CSS when ready, like going back
+    if(this.scrollY > 20){
+        $('.navbar').addClass("sticky");
+    }
+    
+    // scroll-up button show/hide script
+    if(this.scrollY > 500){
+        $('.scroll-up-btn').addClass("show");
+    }
     $(window).scroll(function(){
         // sticky navbar on scroll script
         if(this.scrollY > 20){
@@ -33,20 +42,35 @@ $(document).ready(function(){
         $('.menu-btn i').toggleClass("active");
     });
 
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["Rental", "Townhouses", "Semi", "Sale", "Detached"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
+    $(function () {
+        $('.input-field input').focusout(function () {
+            $(this).next().toggleClass('active', $(this).val() !== "");
+        }).focusout(); //trigger the focusout event manually
     });
 
-    var typed = new Typed(".typing-2", {
-        strings: ["buyers", "sellers", "on-lookers", "curious bunch"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+    // toggleClasses();
+
+    // $('.input-field input').on('focus change paste', function () {
+        
+    // });
+
+    // $('.input-field input').val(function() {
+    //     $(this).next().addClass('active');
+    // });
+
+    // //when focused, change label css
+    // $('.input-field input').focus(function (e) { 
+    //     $(this).next().addClass('active');
+    // });
+
+    // $('.input-field input').blur(function(e) {
+    //     console.log($(this).next());
+    //     if( !$(this).val() ) { //if it is blank. 
+    //         $(this).next().removeClass('active');
+    //     } else {
+    //         $(this).next().addClass('active');
+    //     }
+    // });
 
     // owl carousel script
     $('.carousel').owlCarousel({

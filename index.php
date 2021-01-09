@@ -15,11 +15,18 @@ include("header.php");
 	<section class="home" id="home">
         <div class="max-width">
             <div class="home-content">
-                <div class="text-1">#1 Durham Region </div>
+                <div class="text-1">Only at Durham Region </div>
                 <div class="text-2">Real Estate Market</div>
-                <div class="text-3">HousesConnected has <span class="typing"></span></div>
-                <a href="#">Search</a>
-                <a href="#">Login</a>
+                <div class="text-3">We have <span class="typing"></span></div>
+                <a href="listing-cities.php">Search</a>
+                <?php 
+                //Removes when logged in
+                if (!isset($_SESSION['loggedin'])) 
+                {
+                    echo "<a href=\"login.php\">Login</a>";
+                }
+                ?>
+                
             </div>
         </div>
     </section>

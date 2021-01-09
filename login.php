@@ -12,6 +12,11 @@ $description = "The login page ";
 include("header.php");
 ?>
 <?php
+//Redirects if logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	header("Location: /");
+}
+
 //empty out error and result regardless of method that got you here
 $error = "";
 $output = (isset($_SESSION['message']))? $_SESSION['message']: "";
@@ -77,34 +82,34 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 		if ($_SESSION['user_type'] == GET_AGENT)
 		{
 			header("refresh:5;url=dashboard.php");
-			echo "<br/>Successful logged-in as ".$id.", you will be redirected to your Dashboard page";
+			$output =  "<br/>Successful logged-in as ".$id.", you will be redirected to your Dashboard page";
 			ob_flush();
 		}
 		//------------------------------------------------------------------------------------------------------------------------------------USER
 		else if($_SESSION['user_type'] == GET_USER)
 		{
 			header("refresh:5;url=welcome.php");
-			echo "<br/>Successful logged-in as ".$id.", you will be redirected to your welcome page";
+			$output =  "<br/>Successful logged-in as ".$id.", you will be redirected to your welcome page";
 			ob_flush();
 		}
 		//------------------------------------------------------------------------------------------------------------------------------------ADMIN
 		else if($_SESSION['user_type'] == GET_ADMIN)
 		{
 			header("refresh:5;url=admin.php");
-			echo "<br/>Successful logged-in as ".$id.", you will be redirected to your admin page";
+			$output =  "<br/>Successful logged-in as ".$id.", you will be redirected to your admin page";
 			ob_flush();
 		}
 		//------------------------------------------------------------------------------------------------------------------------------------PENDING AGENT
 		else if($_SESSION['user_type'] == GET_PENDING)
 		{
-			echo "<br/>Successful logged-in as ".$id.", your account is still pending to be approved";
+			$output =  "<br/>Successful logged-in as ".$id.", your account is still pending to be approved";
 			session_destroy();
 		}
 		//------------------------------------------------------------------------------------------------------------------------------------DISABLED
 		else if($_SESSION['user_type'] == GET_DISABLED)
 		{
-			echo "<br/>Successful logged-in as ".$id.", your account has been suspended";
-			echo "<br/>You will be redirected to our Acceptable User Policy page";
+			$output =  "<br/>Successful logged-in as ".$id.", your account has been suspended".
+			 			"<br/>You will be redirected to our Acceptable User Policy page";
 			session_destroy();
 			header("refresh:5;url=aup.php");
 		}
@@ -138,6 +143,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 			<h3 style="text-align: center;"><?php echo $error; ?></h3>
 			<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
 				<p style="text-align: center;">Enter your login ID and password to connect to this system</p>
+				<br/>
 				<div class="input-field">
 					<input type="text" name="id" value="<?php echo $id; ?>" size="30" required/>
 					<label>Username</label>

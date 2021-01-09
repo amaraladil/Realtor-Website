@@ -13,7 +13,7 @@ include("header.php");
 ?>
 <?php
 
-$sessionerror = "";
+$output = "";
 $error = "";
 $curpassword = "";
 $newpassword = "";
@@ -106,21 +106,21 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
 			if ($_SESSION['user_type'] == GET_AGENT)
 			{
 				header("refresh:5;url=dashboard.php");
-				echo "<br/>Successful changed your password, you will be redirected to the Dashboard page";
+				$output =  "<br/>Successful changed your password, you will be redirected to the Dashboard page";
 				ob_flush();
 			}
 			//------------------------------------------------------------------------------------------------------------------------------------USER
 			else if($_SESSION['user_type'] == GET_USER)
 			{
 				header("refresh:5;url=welcome.php");
-				echo "<br/>Successful changed your password, you will be redirected to the welcome page";
+				$output =  "<br/>Successful changed your password, you will be redirected to the welcome page";
 				ob_flush();
 			}
 			//------------------------------------------------------------------------------------------------------------------------------------ADMIN
 			else if($_SESSION['user_type'] == GET_ADMIN)
 			{
 				header("refresh:5;url=admin.php");
-				echo "<br/>Successful changed your password, you will be redirected to the admin page";
+				$output =  "<br/>Successful changed your password, you will be redirected to the admin page";
 				ob_flush();
 			}
 			
@@ -131,59 +131,40 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
 else
 {
 	// If the session is not avaliable, display an error
-	$sessionerror .= "You must be logged in to change password. <br/>";
-	$sessionerror .= "You will be redirected to login page <br/>";
-	header("refresh:5;url=login.php");
+	$error .= "You must be logged in to change password. <br/>";
+	$error .= "You will be redirected to login page <br/>";
+	header("Location: login.php");
 }		
 
 ?>
-	<h1>User Password Change</h1>
-		<hr/>
+<section class="content-body" id='formSetup'>
+        <div class="max-width body-place">			
+			<h2 class="title">Password Change</h2>
 		<p>If you would like to change your current password, then contiune below.
-		<br/>
 		</p>
 		<h2 style="text-align: center;">Enter your current password and a new password.</h2>
 		<h3 style="text-align: center;"><?php echo $error; ?> </h3>
-		<h3 style="text-align: center;"><?php echo $sessionerror; ?> </h3>
+		<h3 style="text-align: center;"><?php echo $output; ?> </h3>
 		<form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" >
-		<table style="border: none;
-				background-color: #e5f2ff;
-				width: auto;
-				text-align: center;
-				margin-left: auto;
-				margin-right: auto;" cellspacing="15">
-			<tr>
-				<td>
-					Username: 
-				</td>
-				<td><input type="text" name="username" value="<?php echo $id;?>" disabled="disabled" size="30"/><br/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Current Password: 
-				</td>
-				<td><input type="password" name="curpassword" value="" size="30"/><br/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					New Password: 
-				</td>
-				<td><input type="password" name="newpassword" value="" size="30"/><br/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Confirm New Password:
-				</td>
-				<td><input type="password" name="confpassword" value="" size="30"/><br/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="Submit"/></td>
-			</tr>
-		</table>
+			<br/>
+			<div class="input-field">
+				<input type="text" name="username" value="<?php echo $id;?>" size="30" disabled />
+				<label>Username</label>
+			</div>
+			<div class="input-field">
+			<input type="password" name="curpassword" value="" size="30"/>
+				<label>Current Password:</label>
+			</div>
+			<div class="input-field">
+			<input type="password" name="newpassword" value="" size="30"/>
+				<label>New Password:</label>
+			</div>
+			<div class="input-field">
+			<input type="password" name="confpassword" value="" size="30"/>
+				<label>Confirm Password:</label>
+			</div>
+			<input type="submit" value="Submit"/>
 		</form>
-		<br/>
+	</div>
+</section>
 <?php include 'footer.php'; ?>
