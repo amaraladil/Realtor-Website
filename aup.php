@@ -77,7 +77,7 @@ include("header.php");
 			</p>
 			<br/>
 			<h2>Definitions</h2>
-			<table border="1">
+			<table>
 		  		<tr>
 			    	<th>Term</th>
 			    	<th>Defnition</th>
@@ -90,7 +90,7 @@ include("header.php");
 			<br/>
 			
 			<h2>Revision History</h2>
-			<table border="1">
+			<table>
 		  		<tr>
 			    	<th>Date Of Change</th>
 			    	<th>Responsible</th>

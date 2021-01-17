@@ -48,30 +48,6 @@ $(document).ready(function(){
         }).focusout(); //trigger the focusout event manually
     });
 
-    // toggleClasses();
-
-    // $('.input-field input').on('focus change paste', function () {
-        
-    // });
-
-    // $('.input-field input').val(function() {
-    //     $(this).next().addClass('active');
-    // });
-
-    // //when focused, change label css
-    // $('.input-field input').focus(function (e) { 
-    //     $(this).next().addClass('active');
-    // });
-
-    // $('.input-field input').blur(function(e) {
-    //     console.log($(this).next());
-    //     if( !$(this).val() ) { //if it is blank. 
-    //         $(this).next().removeClass('active');
-    //     } else {
-    //         $(this).next().addClass('active');
-    //     }
-    // });
-
     // owl carousel script
     $('.carousel').owlCarousel({
         margin: 20,

@@ -865,8 +865,27 @@ footer span a:hover{
     text-align: left;
 }
 
-.policy .body-place p {
+.policy .body-place p,
+.policy .body-place ul {
     padding-bottom: 18px;
+}
+
+.policy .body-place table {
+    border-spacing:0;
+}
+
+.policy .body-place td,
+.policy .body-place th {
+    padding: 8px;
+}
+
+.policy .body-place th {
+    border-bottom: 3px double #000;
+}
+
+.policy .body-place th:not(:last-child),
+.policy .body-place td:not(:last-child) {
+    border-right: 1px solid #000;
 }
 
 .btn-back {
@@ -876,7 +895,7 @@ footer span a:hover{
 .btn-back form,
 .btn-back input {
     margin: 10px;
-    width: 80%;
+    width: 70%;
     font-size: 30px;
     font-weight: 500;
 }

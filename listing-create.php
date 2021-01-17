@@ -302,10 +302,17 @@ Warning: pg_execute() [function.pg-execute]: Query failed: ERROR: null value in 
 					echo build_dropdown($table, $garage); ?>
 					<label>Garage Type:</label>
 				</div>
-				<div class="otherForm">
-					<button onclick="myFunction()">Add Image</button>
+				<!-- <div class="otherForm">
+					<button type="button" onclick="myFunction()">Add Image</button>
 					<label>Upload an image:</label>
-				</div>
+					<script>
+					function myFunction() {
+						var x = document.createElement("INPUT");
+						x.setAttribute("type", "file");
+						document.body.appendChild(x);
+					}
+					</script>
+				</div> -->
 				<div class="otherForm">
 					<textarea name = "description" rows="4" cols="30"><?php echo htmlspecialchars($info);?></textarea>
 					<label>Description:</label>
