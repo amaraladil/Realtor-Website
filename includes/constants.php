@@ -7,7 +7,7 @@ September 29, 2016
 */
 
 	//Dataconnect CONSTANTS
-	define("HOST_DB", "ec2-3-221-238-58.compute-1.amazonaws.com:5432");
+	define("HOST_DB", "ec2-3-221-238-58.compute-1.amazonaws.com");
 	define("NAME_DB", "dbs213q5ubcs99");
 	define("USER_DB", "myycaiegetxgyz");
 	define("PASSWORD_DB", "468c5868440639d35488a13e7ae1d91fd83a2491fba0d4343b559e6fae6f620b");
