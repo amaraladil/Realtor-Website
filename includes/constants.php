@@ -7,10 +7,10 @@ September 29, 2016
 */
 
 	//Dataconnect CONSTANTS
-	define("HOST_DB", "ec2-54-146-4-66.compute-1.amazonaws.com");
-	define("NAME_DB", "d9o1vsbabb9mrc");
-	define("USER_DB", "vqobjqondskxxb");
-	define("PASSWORD_DB", "616393702c01e04e7dba834eae8828433fd50569371fd999c5e3aba05f4846ca");
+	define("HOST_DB", "ec2-3-221-238-58.compute-1.amazonaws.com:5432");
+	define("NAME_DB", "dbs213q5ubcs99");
+	define("USER_DB", "myycaiegetxgyz");
+	define("PASSWORD_DB", "468c5868440639d35488a13e7ae1d91fd83a2491fba0d4343b559e6fae6f620b");
 
 	//For registeration 
 	define("MINIMUM_ID_LENGTH", 5);
